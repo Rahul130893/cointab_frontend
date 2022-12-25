@@ -10,7 +10,7 @@ export const Home = () => {
 
   let url = "https://randomuser.me/api";
 
-  let arr = new Array(10).fill(0);
+  let arr = new Array(20).fill(0);
 
 
   //getting data through API
@@ -21,10 +21,10 @@ export const Home = () => {
     try {
       await Promise.all(
         arr.map(async (e) => {
-          const response = await fetch(url);
-          const list = await response.json();
+          const response = await fetch(url)
+          const list = await response.json()
 
-          temp.push(list.results[0]);
+          temp.push(list.results[0])
         })
       );
       setData(temp);

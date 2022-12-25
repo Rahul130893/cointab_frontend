@@ -8,6 +8,8 @@ import "../App.css"
 export const UserDetails = () => {
 
     const [received, setReceived] = useState([])
+    const [final, setFinal]= useState([])
+    const [filtered, setFiltered]= useState([])
    
 
     const navigate = useNavigate()
@@ -29,7 +31,8 @@ export const UserDetails = () => {
 
             const res = await response.json();
             console.log("res", res);
-            setReceived(res.user)
+              setReceived(res.user)
+              setFinal(res.user)
           } catch (error) {
             console.log(error);
           }
@@ -42,14 +45,18 @@ export const UserDetails = () => {
         
 
         if (e.target.value !== "") {
-              const filtering = received.filter((e) => {
+              const filtering = final.filter((e) => {
                 return e.gender === x;
               });
               console.log(filtering);
               setReceived(filtering);
+           // setFiltered(filtering)
         } else {
             getdata_from_db()
+            
         }
+
+       
         
       
     }
@@ -59,9 +66,9 @@ export const UserDetails = () => {
         <div className="top">
           <button onClick={navigateHome}>GO_TO_HOME</button>
           <select className="filterbyGender" onChange={handleChange}>
-            <option value={""}>ALL</option>
-            <option value={"male"}>Male</option>
-                    <option value={"female"}>Female</option>
+            <option value="">ALL</option>
+            <option value="male">Male</option>
+                    <option value="female">Female</option>
           </select>
         </div>
 
